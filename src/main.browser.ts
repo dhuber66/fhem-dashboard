@@ -2,10 +2,15 @@ import './polyfills.browser';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
+import {enableProdMode} from '@angular/core';
+
+require('font-awesome/css/font-awesome.css');
 
 export const platformRef = platformBrowserDynamic();
 
 export function main() {
+  //enableProdMode();
+  
   return platformRef.bootstrapModule(AppModule)
     .catch(err => console.error(err));
 }

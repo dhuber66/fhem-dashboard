@@ -1,0 +1,9 @@
+<div class="widget"  (click)="toggleStatus()">
+    <div class="widget-header">{{ name }}</div>
+    <div [class.switch-widget-on]="status == 'on'">
+        <div class="switch-icon">
+            <i class="fa fa-lightbulb-o"></i>
+        </div>
+       <div class="switch-status">{{ status }}</div> 
+    </div>
+</div>

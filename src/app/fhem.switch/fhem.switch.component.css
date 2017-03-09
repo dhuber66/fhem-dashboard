@@ -1,0 +1,31 @@
+@import "../../../node_modules/font-awesome/css/font-awesome.css";
+
+.widget {
+    width: 200px;
+    height: 200px;
+    background-color: #808080;
+    text-align: center;
+}
+
+.widget-header {
+    line-height: 30px;
+    color: white;
+    background-color: #404040;
+} 
+
+.switch-icon {
+    line-height: 200px;
+    font-size: 72pt;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.switch-widget-on {
+    color: yellow;
+}
+
+.switch-status {
+    line-height: 12pt;
+    font-size: 12pt;
+}
