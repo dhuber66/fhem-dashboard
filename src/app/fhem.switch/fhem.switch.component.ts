@@ -12,7 +12,6 @@ require('font-awesome/css/font-awesome.css');
 export class FhemSwitchComponent implements WidgetData {
     constructor(private http: Http) { }
 
-    //@Input('name') name: string = "LichtDecke";
     @Input() data: any;
     error;
     status: string = "Unknown";

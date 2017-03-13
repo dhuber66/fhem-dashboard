@@ -1,6 +1,6 @@
 
 
-import { Component, Input, AfterViewInit, ViewChild, ComponentFactoryResolver, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { Widget } from './app.widget';
 import { WidgetDef, WidgetData }     from './app.widgetdef';
 
@@ -12,21 +12,13 @@ import { WidgetDef, WidgetData }     from './app.widgetdef';
               </div>
             `
 })
-export class WidgetHost implements OnInit, OnDestroy {
-  @Input() my_widgets: WidgetDef[];
-  currentAddIndex: number = -1;
+export class WidgetHost implements OnInit {
+  @Input() widgets: WidgetDef[];
   @ViewChild(Widget) widget: Widget;
-  subscription: any;
-  interval: any;
   constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
-  
   
   ngOnInit() {
     this.loadComponent();
-  }
-  
-  ngOnDestroy() {
-    clearInterval(this.interval);
   }
   
   loadComponent() {
@@ -34,7 +26,7 @@ export class WidgetHost implements OnInit, OnDestroy {
     viewContainerRef.clear();
 
     var thiswidget: WidgetDef;
-    for(thiswidget of this.my_widgets) {
+    for(thiswidget of this.widgets) {
         let componentFactory = this._componentFactoryResolver.resolveComponentFactory(thiswidget.component);
         let componentRef = viewContainerRef.createComponent(componentFactory);
         (<WidgetData>componentRef.instance).data = thiswidget.data;
