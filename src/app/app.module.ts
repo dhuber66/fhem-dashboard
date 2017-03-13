@@ -7,11 +7,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http'; 
 
 import { FhemSwitchComponent } from './fhem.switch/fhem.switch.component';
+import { WidgetList } from './app.widgetlist';
+import { Widget } from './app.widget';
+import { WidgetHost } from './app.widgethost';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    FhemSwitchComponent
+    FhemSwitchComponent,
+    WidgetHost,
+    Widget,
   ],
   imports: [
     BrowserModule,
@@ -20,8 +26,9 @@ import { FhemSwitchComponent } from './fhem.switch/fhem.switch.component';
     HttpModule,
   //  RouterModule.forRoot(rootRouterConfig, { useHash: true })
   ],
+  entryComponents: [ FhemSwitchComponent ],
   providers: [
-  //  GithubService
+    WidgetList
   ],
   bootstrap: [ AppComponent ]
 })

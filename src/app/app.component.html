@@ -1,9 +1,10 @@
 <hr>
 <main>
 <div class="app">
-  	<ul>
-    <div class="col-md-4" *ngFor="let switch of switches"><fhem-switch name="{{switch}}"></fhem-switch></div>
-    </ul>
+  	<div #widgetContainer>
+        <!--div class="col-md-4" *ngFor="let widget of widgets"><fhem-switch name="{{widget.Name}}"></fhem-switch></div-->
+        <widget-host [my_widgets]="my_widgets"></widget-host>
+    </div>
 </div>
 </main>
 <hr>

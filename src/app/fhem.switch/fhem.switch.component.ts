@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Http, URLSearchParams} from '@angular/http';
+import {WidgetData} from '../app.widgetdef'
 
 require('font-awesome/css/font-awesome.css');
 
@@ -8,10 +9,11 @@ require('font-awesome/css/font-awesome.css');
   styleUrls: ['./fhem.switch.component.css'],
   templateUrl: './fhem.switch.component.html'
 })
-export class FhemSwitchComponent {
+export class FhemSwitchComponent implements WidgetData {
     constructor(private http: Http) { }
 
-    @Input('name') name: string = "LichtDecke";
+    //@Input('name') name: string = "LichtDecke";
+    @Input() data: any;
     error;
     status: string = "Unknown";
     
@@ -20,7 +22,7 @@ export class FhemSwitchComponent {
     }
     
     getStatus(): void {
-      this.getState(this.name);
+      this.getState(this.data.name);
     }
 
     updateStatus(status: string): void {
@@ -33,9 +35,9 @@ export class FhemSwitchComponent {
 
     toggleStatus(): void {
       if(this.status == "off")
-        this.setState(this.name,true);
+        this.setState(this.data.name,true);
       else
-        this.setState(this.name,false);
+        this.setState(this.data.name,false);
       
     }
 

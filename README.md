@@ -1,6 +1,6 @@
-## angular2-seed
+## fhem-dashboard based on angular2-seed
 
-A simple starter project demonstrating the basic concepts of Angular 2.
+Simple widgets for fhem switches
 
 
 ### Usage
