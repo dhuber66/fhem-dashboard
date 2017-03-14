@@ -1,0 +1,9 @@
+<div class="widget"  (click)="toggleStatus()">
+    <div class="widget-header">{{ data.name }}</div>
+    <div [class.roof-widget-on]="status == 'on'">
+        <div class="roof-icon">
+            <i class="fa fa-clock-o"></i>
+        </div>
+       <div class="roof-status">{{ status }}</div> 
+    </div>
+</div>

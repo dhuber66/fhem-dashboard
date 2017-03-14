@@ -1,6 +1,6 @@
 @import "../../../node_modules/font-awesome/css/font-awesome.css";
 
-.switch-icon {
+.roof-icon {
     line-height: 200px;
     font-size: 72pt;
     display: inline-block;
@@ -8,11 +8,11 @@
     line-height: normal;
 }
 
-.switch-widget-on {
+.roof-widget-on {
     color: yellow;
 }
 
-.switch-status {
+.roof-status {
     line-height: 12pt;
     font-size: 12pt;
 }

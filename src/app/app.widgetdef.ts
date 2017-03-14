@@ -6,3 +6,4 @@ export class WidgetDef {
 export interface WidgetData {
   data: any;
 }
+
