@@ -11,48 +11,58 @@ require('font-awesome/css/font-awesome.css');
   templateUrl: './fhem.roof.component.html'
 })
 export class FhemRoofComponent implements WidgetData {
-    constructor(private http: Http) { }
+  constructor(private http: Http) { }
 
-    @Input() data: any;
-    error;
-    status: string = "Unknown";
+  @Input() data: any;
+  error;
+  status: string = "Unknown";
+  lastcommand: string ="";
+  timer;
+
+  ngOnInit() {
+    this.getStatus();
+  
+    this.timer = Observable.timer(5000,12000);
+    this.timer.subscribe(t => { this.refresh(t)})  
+  }
     
-    ngOnInit() {
-      this.getStatus();
-    
-      let timer = Observable.timer(5000,12000);
-      timer.subscribe(t => { this.refresh(t)})  
-    }
-    
-    getStatus(): void {
+  getStatus(): void {
+    this.getState();
+  }
+
+  updateStatus(status: string): void {
+    if(status.substr(0,4)=="set_") 
       this.getState();
+    else {
+      let oldstatus=this.status;
+      this.status=status;  
+      if(oldstatus!=status) {
+        console.log(`updateStatus of ${ this.data.name } to ${ status }`)
+        this.getState();
+      }    
     }
+}
 
-    updateStatus(status: string): void {
-        console.log(`updateStatus ${ status }`)
-        if(status.substr(0,4)=="set_")
-          this.getState();
-        else
-          this.status=status;  
-    }
+  toggleStatus(): void {
+    if(this.status == "off")
+      this.setState("on");
+    else if(this.status == "on")
+      this.setState("off");
+    else if(this.lastcommand=="on") 
+      this.setState("stop");
+    else if(this.lastcommand=="off") 
+      this.setState("stop");
+    else 
+      this.setState("off");
+  }
 
-    toggleStatus(): void {
-      if(this.status == "off")
-        this.setState(true);
-      else
-        this.setState(false);
-      
-    }
-
-
-  private setState(state: boolean) {
+  private setState(state: string) {
     let params = new URLSearchParams();
     params.set('XHR', '1');
-    let status='off';
-    if(state)
-      status='on'
+    this.lastcommand=state;
+    console.log(`setting ${ this.data.name } new state to ${ state }`);
 
-    let url = `${ this.data.url }/fhem?cmd=set ${ this.data.name } ${ status }`;
+    let url = `${ this.data.url }/fhem?cmd=set ${ this.data.name } ${ state }`;
     return this.http.get(url, {search: params})
       .subscribe((data) => {this.getStatus();},
                 (err) => {this.error = err;});
@@ -65,12 +75,11 @@ export class FhemRoofComponent implements WidgetData {
     let url = `${ this.data.url }/fhem?cmd=jsonlist2+NAME=${ this.data.name }`;
     return this.http.get(url, {search: params})
       .map((res) => res.json())
-      .subscribe((status) => { console.log(status); this.updateStatus(status['Results'][0]['Internals']['STATE']);},
+      .subscribe((status) => { this.updateStatus(status['Results'][0]['Internals']['STATE']);},
                 (err) => {console.log(err);});
   }
 
   refresh(time): void {
-      console.log("AutoRefresh");
       this.getStatus();
   }
 }

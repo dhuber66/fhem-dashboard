@@ -29,14 +29,20 @@ export class FhemSwitchComponent implements WidgetData {
     }
 
     updateStatus(status: string): void {
-        console.log(`updateStatus ${ status }`)
-        if(status.substr(0,4)=="set_")
-          this.getStatus();
-        else
-          this.status=status;  
+      if(status.substr(0,4)=="set_") 
+        this.getState();
+      else {
+        let oldstatus=this.status;
+        this.status=status;  
+        if(oldstatus!=status) {
+          console.log(`updateStatus of ${ this.data.name } to ${ status }`)
+          this.getState();
+        }    
+      }
     }
 
     toggleStatus(): void {
+      this.getState();
       if(this.status == "off")
         this.setState(true);
       else
@@ -69,7 +75,6 @@ export class FhemSwitchComponent implements WidgetData {
   }
 
   refresh(time): void {
-      console.log("AutoRefresh");
       this.getStatus();
   }
 }

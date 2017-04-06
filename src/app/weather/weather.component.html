@@ -1,9 +1,10 @@
-<div class="widget"  (click)="toggleStatus()">
-    <div class="widget-header">{{ data.name }}</div>
+<div class="widget2x"  (click)="toggleStatus()">
+    <div class="widget-header">{{ data.title }}</div>
     <div [class.weather-widget-on]="status == 'on'">
         <div class="weather-icon">
-            <i class="fa fa-sun-o"></i>
+            <i class="owf owf-{{ icon }}"></i>
         </div>
-       <div class="weather-status">{{ status }}</div> 
+       <div class="weather-status">{{ status }} <br>
+            {{ temp }} °C </div> 
     </div>
 </div>

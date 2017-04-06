@@ -1,11 +1,12 @@
-@import "../../../node_modules/font-awesome/css/font-awesome.css";
+@import "../../assets/css/owfont-regular.min.css";
 
 .weather-icon {
-    line-height: 200px;
-    font-size: 72pt;
+    /*line-height: 172px;*/
+    font-size: 60pt;
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
+    color: blue; 
 }
 
 .weather-widget-on {

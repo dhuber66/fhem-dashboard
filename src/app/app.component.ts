@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { WidgetList } from './app.widgetlist';
 import { WidgetDef } from './app.widgetdef';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None, // Allow CSS to override globals.
 })
 export class AppComponent implements OnInit {
 

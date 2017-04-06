@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 
 import { FhemSwitchComponent } from './fhem.switch/fhem.switch.component';
 import { FhemRoofComponent } from './fhem.roof/fhem.roof.component';
+import { WeatherComponent } from './weather/weather.component';
 import { WidgetList } from './app.widgetlist';
 import { Widget } from './app.widget';
 import { WidgetHost } from './app.widgethost';
@@ -18,6 +19,7 @@ import { WidgetHost } from './app.widgethost';
     AppComponent,
     FhemSwitchComponent,
     FhemRoofComponent,
+    WeatherComponent,
     WidgetHost,
     Widget,
   ],
@@ -28,7 +30,7 @@ import { WidgetHost } from './app.widgethost';
     HttpModule,
   //  RouterModule.forRoot(rootRouterConfig, { useHash: true })
   ],
-  entryComponents: [ FhemSwitchComponent, FhemRoofComponent ],
+  entryComponents: [ FhemSwitchComponent, FhemRoofComponent, WeatherComponent ],
   providers: [
     WidgetList
   ],
